@@ -7,8 +7,8 @@ class Class:
     def get_best_student(self):
         '''1. chcialabym wyciagnac najlepszego studenta korzystajac z metody get_average_grade
             z klasy Student, stworzylam tam tez metode __gt__ ale nie wiem czy tak w gl mozna
-            2. i tez nie wiem czy w tym wypadku po dlugosci listy (range(len...)) 
-            czy nie wystarczylo by sama self.students'''
+        2. patrzac na swoje algorytmu z max, korzystalam tam z dlugosci listy, 
+            ale czy nie wystarczy po prostu przejsc po liscie?'''
         student = self.students[0]
 
         for checked_student in self.students:
@@ -18,7 +18,13 @@ class Class:
         return student
 
     def get_average_grade(self):
-        pass
+        grade = 0
+        count = 0
+        for student in self.students:
+            for grade in student.get_average_grade():
+                grade += grade
+                count += 1
+        return grade/count
 
     def get_class_subjects(self):
         '''tu podobnie, jak dobrac sie do atrybutu subjects ktory jest w klasie Teacher
