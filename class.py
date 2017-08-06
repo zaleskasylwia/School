@@ -37,14 +37,16 @@ class Class:
         return subjects
 
     def sort_students(self, attr):
-        if not self.students: 
+        if not self.students:
             return None
-        
+
         try:
             attr = getattr(self.students[0], attr) # probuje wyciągnąć atrybut z obiektu studenta
         except AttributeError:
             return None
         else:
+            pass
+            # tu metoda do sortowania?
 
         '''mam sortowac alfabetycznie, albo przez srednia, nie wiem, czy dobrze rozumiem
         ale ten attr jako paramter to on ma decydowac jako co bede sortowac?'''
