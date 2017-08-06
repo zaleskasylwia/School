@@ -1,8 +1,8 @@
 class Class:
     def __init__(self, name, students=None, teachers=None):
         self.name = name
-        self.students = None or []
-        self.teachers = None or []
+        self.students = students or []
+        self.teachers = teachers or []
 
     def get_best_student(self):
         '''1. chcialabym wyciagnac najlepszego studenta korzystajac z metody get_average_grade
@@ -10,9 +10,11 @@ class Class:
             2. i tez nie wiem czy w tym wypadku po dlugosci listy (range(len...)) 
             czy nie wystarczylo by sama self.students'''
         student = self.students[0]
-        for i in range(len(self.students)):
-            if student < students[0]:
-                student = students[i]
+
+        for checked_student in self.students:
+            if checked_student > student:
+                student = checked_student
+
         return student
 
     def get_average_grade(self):
@@ -21,9 +23,23 @@ class Class:
     def get_class_subjects(self):
         '''tu podobnie, jak dobrac sie do atrybutu subjects ktory jest w klasie Teacher
         i czy to ma byc zalezne od danej klasy, czyli tego name, np. 1A ?'''
-        pass
+        subjects = []
+        for teacher in self.teacher:
+            for subject in teacher.subjects:
+                if subjects not in subjects:
+                    subjects.append(subjects)
+        return subjects
 
     def sort_students(self, attr):
+        if not self.students: 
+            return None
+        
+        try:
+            attr = getattr(self.students[0], attr) # probuje wyciągnąć atrybut z obiektu studenta
+        except AttributeError:
+            return None
+        else:
+
         '''mam sortowac alfabetycznie, albo przez srednia, nie wiem, czy dobrze rozumiem
         ale ten attr jako paramter to on ma decydowac jako co bede sortowac?'''
         sorted = False
