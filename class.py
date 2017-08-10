@@ -42,25 +42,12 @@ class Class:
         return subjects
 
     def sort_students(self, attr):
+        '''mam sortowac alfabetycznie, albo przez srednia, nie wiem, czy dobrze rozumiem
+        ale ten attr jako paramter to on ma decydowac jako co bede sortowac?'''
         if not self.students:
             return None
 
-            sort z key ze po get full name
-            get average grade 
-        
-        if attr == 
-
-
-        try:
-            attr = getattr(self.students[0], attr) # probuje wyciągnąć atrybut z obiektu studenta
-        except AttributeError:
-            return None
-        else:
-            pass
-            # tu metoda do sortowania?
-
-        '''mam sortowac alfabetycznie, albo przez srednia, nie wiem, czy dobrze rozumiem
-        ale ten attr jako paramter to on ma decydowac jako co bede sortowac?'''
+        if attr == "alpha":
         sorted = False
         length = len(self.students) - 1
 
@@ -72,3 +59,8 @@ class Class:
                     sorted = False
                     self.students[index], self.students[index + 1] = self.students[index + 1], self.students[index]
             return self.students
+
+        elif attr == "avg":
+            avg_sorted_student = sorted(self.students, key=lambda x: x.get_full_name())
+            return avg_sorted_student
+
