@@ -1,44 +1,55 @@
 class Class:
-    def __init__(self, name, students=None, teachers=None):
+    def __init__(self, name, students=[], teachers=[]):
         self.name = name
-        self.students = students or []
-        self.teachers = teachers or []
+        self.students = students
+        self.teachers = teachers
 
     def get_best_student(self):
         '''1. chcialabym wyciagnac najlepszego studenta korzystajac z metody get_average_grade
             z klasy Student, stworzylam tam tez metode __gt__ ale nie wiem czy tak w gl mozna
         2. patrzac na swoje algorytmu z max, korzystalam tam z dlugosci listy, 
             ale czy nie wystarczy po prostu przejsc po liscie?'''
-        student = self.students[0]
+
+        if self.students == []:
+            raise IndexError
+        else:
+            best_student = self.students[0]
 
         for checked_student in self.students:
-            if checked_student > student:
-                student = checked_student
+            if checked_student > best_student:
+                best_student = checked_student
 
-        return student
+        #best_student = max(self.students, key=lambda x: x.get_average_grade())
+
+
+        return best_student
 
     def get_average_grade(self):
         grade = 0
-        count = 0
+        count = len(self.students)
         for student in self.students:
-            for grade in student.get_average_grade():
-                grade += grade
-                count += 1
+            grade += student.get_average_grade()
         return grade/count
 
     def get_class_subjects(self):
         '''tu podobnie, jak dobrac sie do atrybutu subjects ktory jest w klasie Teacher
         i czy to ma byc zalezne od danej klasy, czyli tego name, np. 1A ?'''
         subjects = []
-        for teacher in self.teacher:
+        for teacher in self.teachers:
             for subject in teacher.subjects:
-                if subjects not in subjects:
-                    subjects.append(subjects)
+                if subject not in subjects:
+                    subjects.append(subject)
         return subjects
 
     def sort_students(self, attr):
         if not self.students:
             return None
+
+            sort z key ze po get full name
+            get average grade 
+        
+        if attr == 
+
 
         try:
             attr = getattr(self.students[0], attr) # probuje wyciągnąć atrybut z obiektu studenta
